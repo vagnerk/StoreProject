@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using BabyStore.Models;
+using BabyStore.ViewModels;
 
 namespace BabyStore.Controllers
 {
@@ -309,6 +310,7 @@ namespace BabyStore.Controllers
             return new AccountController.ChallengeResult(provider, Url.Action("LinkLoginCallback", "Manage"), User.Identity.GetUserId());
         }
 
+
         //
         // GET: /Manage/LinkLoginCallback
         public async Task<ActionResult> LinkLoginCallback()
@@ -321,8 +323,43 @@ namespace BabyStore.Controllers
             var result = await UserManager.AddLoginAsync(User.Identity.GetUserId(), loginInfo.Login);
             return result.Succeeded ? RedirectToAction("ManageLogins") : RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
         }
+	    // GET: /Manage/Edit
+	    public async Task<ActionResult> Edit()
+	    {
+		    var userId = User.Identity.GetUserId();
+		    var user = await UserManager.FindByIdAsync(userId);
+		    var model = new EditUserViewModel
+		    {
+			    Email = user.Email,
+			    DateOfBirth = user.DateOfBirth,
+			    FirstName = user.FirstName,
+			    LastName = user.LastName,
+			    Address = user.Address
+		    };
+		    return View(model);
+	    }
 
-        protected override void Dispose(bool disposing)
+	    // POST: Manage/Edit/
+	    // To protect from overposting attacks, please enable the specific properties you want to bind to, for
+// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+	    [HttpPost, ActionName("Edit")]
+	    [ValidateAntiForgeryToken]
+	    public async Task<ActionResult> EditPost()
+	    {
+		    var userId = User.Identity.GetUserId();
+		    var userToUpdate = await UserManager.FindByIdAsync(userId);
+		    if (TryUpdateModel(userToUpdate, "", new string[] {
+			    "FirstName",
+			    "LastName",
+			    "DateOfBirth",
+			    "Address" }))
+		    {
+			    await UserManager.UpdateAsync(userToUpdate);
+			    return RedirectToAction("Index");
+		    }
+		    return View();
+	    }
+		protected override void Dispose(bool disposing)
         {
             if (disposing && _userManager != null)
             {
