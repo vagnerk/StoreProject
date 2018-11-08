@@ -203,10 +203,12 @@
     <Compile Include="Constants.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\BasketController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\ProductImagesController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\RolesAdminController.cs" />
@@ -219,17 +221,25 @@
     <Compile Include="Migrations\201811011430311_InitialCreate.Designer.cs">
       <DependentUpon>201811011430311_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201811030954365_update_user_fields.cs" />
-    <Compile Include="Migrations\201811030954365_update_user_fields.Designer.cs">
-      <DependentUpon>201811030954365_update_user_fields.cs</DependentUpon>
+    <Compile Include="Migrations\201811081351411_AddBasketLine.cs" />
+    <Compile Include="Migrations\201811081351411_AddBasketLine.Designer.cs">
+      <DependentUpon>201811081351411_AddBasketLine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811081514572_addorders.cs" />
+    <Compile Include="Migrations\201811081514572_addorders.Designer.cs">
+      <DependentUpon>201811081514572_addorders.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\StoreConfiguration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Address.cs" />
+    <Compile Include="Models\Basket.cs" />
+    <Compile Include="Models\BasketLine.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\OrderLine.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductImage.cs" />
     <Compile Include="Models\ProductImageMapping.cs" />
@@ -237,6 +247,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AdminViewModel.cs" />
+    <Compile Include="ViewModels\BasketSummaryViewModel.cs" />
+    <Compile Include="ViewModels\BasketViewModel.cs" />
     <Compile Include="ViewModels\ProductIndexViewModel.cs" />
     <Compile Include="ViewModels\ProductViewModel.cs" />
   </ItemGroup>
@@ -400,6 +412,13 @@
     <Content Include="Views\Shared\_UserDetailsPartial.cshtml" />
     <Content Include="Views\Manage\Edit.cshtml" />
     <Content Include="Views\Shared\_EditUserPartial.cshtml" />
+    <Content Include="Views\Basket\Index.cshtml" />
+    <Content Include="Views\Basket\Summary.cshtml" />
+    <Content Include="Views\Orders\Create.cshtml" />
+    <Content Include="Views\Orders\Delete.cshtml" />
+    <Content Include="Views\Orders\Details.cshtml" />
+    <Content Include="Views\Orders\Edit.cshtml" />
+    <Content Include="Views\Orders\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -421,8 +440,11 @@
     <EmbeddedResource Include="Migrations\201811011430311_InitialCreate.resx">
       <DependentUpon>201811011430311_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201811030954365_update_user_fields.resx">
-      <DependentUpon>201811030954365_update_user_fields.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201811081351411_AddBasketLine.resx">
+      <DependentUpon>201811081351411_AddBasketLine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811081514572_addorders.resx">
+      <DependentUpon>201811081514572_addorders.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
