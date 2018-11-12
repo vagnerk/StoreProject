@@ -275,7 +275,14 @@ namespace BabyStore.Controllers
         {
             Product product = db.Products.Find(id);
             db.Products.Remove(product);
-            db.SaveChanges();
+
+	        var orderLines = db.OrderLines.Where(ol => ol.ProductID == id);
+	        foreach (var ol in orderLines)
+	        {
+		        ol.ProductID = null;
+	        }
+
+			db.SaveChanges();
             return RedirectToAction("Index");
         }
 
