@@ -217,6 +217,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="HTMLHelpers\PagingLinks.cs" />
     <Compile Include="Migrations\201811011430311_InitialCreate.cs" />
     <Compile Include="Migrations\201811011430311_InitialCreate.Designer.cs">
       <DependentUpon>201811011430311_InitialCreate.cs</DependentUpon>
@@ -228,6 +229,10 @@
     <Compile Include="Migrations\201811081514572_addorders.cs" />
     <Compile Include="Migrations\201811081514572_addorders.Designer.cs">
       <DependentUpon>201811081514572_addorders.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811131511553_category_rowversion.cs" />
+    <Compile Include="Migrations\201811131511553_category_rowversion.Designer.cs">
+      <DependentUpon>201811131511553_category_rowversion.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Migrations\StoreConfiguration.cs" />
@@ -246,9 +251,11 @@
     <Compile Include="Models\ProductMetaData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Utilities\AsyncPaging.cs" />
     <Compile Include="ViewModels\AdminViewModel.cs" />
     <Compile Include="ViewModels\BasketSummaryViewModel.cs" />
     <Compile Include="ViewModels\BasketViewModel.cs" />
+    <Compile Include="ViewModels\BestSellersViewModel.cs" />
     <Compile Include="ViewModels\ProductIndexViewModel.cs" />
     <Compile Include="ViewModels\ProductViewModel.cs" />
   </ItemGroup>
@@ -419,6 +426,8 @@
     <Content Include="Views\Orders\Details.cshtml" />
     <Content Include="Views\Orders\Edit.cshtml" />
     <Content Include="Views\Orders\Index.cshtml" />
+    <Content Include="Views\Error\PageNotFound.cshtml" />
+    <Content Include="Views\Error\InternalServerError.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -445,6 +454,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811081514572_addorders.resx">
       <DependentUpon>201811081514572_addorders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811131511553_category_rowversion.resx">
+      <DependentUpon>201811131511553_category_rowversion.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
